@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -37,19 +37,6 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  const [user, setUser] = useState({ name: "User", role: "Admin" }); // Default user state
-
-  useEffect(() => {
-    // Replace with your API endpoint
-    fetch("/api/admins/current") // Example API endpoint
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.name) {
-          setUser({ name: data.name, role: data.role }); // Assuming your API returns { name: '...', role: '...' }
-        }
-      })
-      .catch((error) => console.error("Error fetching user data:", error));
-  }, []);
 
   return (
     <Box
@@ -119,10 +106,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {user.name} {/* Display fetched user name */}
+                  User
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  {user.role} {/* Display fetched user role */}
+                  Admin
                 </Typography>
               </Box>
             </Box>
@@ -136,6 +123,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -157,6 +145,7 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+
             <Typography
               variant="h6"
               color={colors.grey[300]}
