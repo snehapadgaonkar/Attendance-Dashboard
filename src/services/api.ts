@@ -119,3 +119,22 @@ export const adminLogin = async (username: string, password: string) => {
     throw error; // Rethrow the error for handling in the calling function
   }
 };
+
+// New function to register an admin
+export const adminRegister = async (username: string, password: string, email: string) => {
+  try {
+    const response = await axios.post(`${API_URL}/admins/register`, {
+      username,
+      password,
+      email,
+    });
+    return response.data; // Return the response data after successful registration
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error('Error registering admin:', error.response.data);
+    } else {
+      console.error('Error registering admin:', error.message);
+    }
+    throw error; // Rethrow the error for handling in the calling function
+  }
+};

@@ -15,6 +15,7 @@ import PrivateRoute from "./components/PrivateRoute"; // Import the PrivateRoute
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+import Register from "./scenes/register";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -34,6 +35,7 @@ function App() {
               {!isLoginPage && <Topbar setIsSidebar={setIsSidebar} />} {/* Render topbar only if not on login page */}
               <Routes>
                 <Route path="/" element={<Login />} />
+                <Route path="/register" element={<Register/>} />
                 <Route path="/dashboard" element={
                   <PrivateRoute>
                     <Dashboard />

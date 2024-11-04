@@ -1,29 +1,27 @@
 import React, { useState } from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext"; 
-import { adminLogin } from "../../services/api.ts"; 
+import { adminRegister } from "../../services/api.ts"; // Adjust the import path
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth();
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await adminLogin(username, password);
-      setMessage(response.data.message);
-      login();
-      navigate("/dashboard");
-
+      const response = await adminRegister(username, password, email);
+      setMessage(response.message || "Registration successful. Please log in.");
+      
+      // Optional: Redirect to login page after registration
       setTimeout(() => {
-        setMessage("");
+        navigate("/login");
       }, 3000);
     } catch (error) {
-      setMessage(error.response?.data?.message || "Login failed. Please try again.");
+      setMessage(error.response?.data?.message || "Registration failed. Please try again.");
     }
   };
 
@@ -38,8 +36,8 @@ const Login = () => {
       }}
     >
       <Box sx={{ maxWidth: 400, width: '100%', p: 3, bgcolor: '#7564C0', borderRadius: 2, boxShadow: 1 }}>
-        <Typography variant="h4" align="center">Login</Typography>
-        <form onSubmit={handleLogin}>
+        <Typography variant="h4" align="center">Register</Typography>
+        <form onSubmit={handleRegister}>
           <TextField
             label="Username"
             variant="outlined"
@@ -59,8 +57,18 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <TextField
+            label="Email"
+            type="email"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
+            Register
           </Button>
         </form>
         {message && (
@@ -73,4 +81,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
