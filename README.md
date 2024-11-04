@@ -25,7 +25,7 @@ The Attendance Dashboard System is a web-based application built using the MERN 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/padgaonkarsneha/attendance-dashboard.git
+   git clone https://github.com/snehapadgaonkar/Attendance-dashboard.git
 
 2. **Navigate to the project directory**:
     ```bash
