@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Attendance Dashboard System is a web-based application built using the MERN stack (MongoDB, Express.js, React, Node.js) to facilitate efficient attendance management for organizations. This application allows users to easily track, record, and report attendance data, featuring insightful visualizations.
+The Attendance Dashboard System is a web-based application built using the MERN stack (MongoDB, Express.js, React, Node.js) to facilitate efficient attendance management for schools. This application allows users to easily track, record, and report attendance data, featuring insightful visualizations.
 
 ![Project Dashboard](/public/assets/dashboard.png)
 
