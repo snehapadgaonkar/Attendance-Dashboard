@@ -40,7 +40,9 @@
     "yup": "^1.0.2"
   },
   "scripts": {
-    "start": "set PORT=3000 && react-scripts start",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-frontend": "set PORT=3000 && react-scripts start",
+    "start-backend": "cd server && node index.js && npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -64,6 +66,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^9.0.1",
     "typescript": "^5.1.6"
   }
 }
